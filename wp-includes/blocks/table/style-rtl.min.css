@@ -1,0 +1,48 @@
+CAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Pro Audio">
+      <registryValue name="Scheduling Category" valueType="REG_SZ" value="High" />
+      <registryValue name="SFIO Priority" valueType="REG_SZ" value="Normal" />
+      <registryValue name="Background Only" valueType="REG_SZ" value="False" />
+      <registryValue name="Priority" valueType="REG_DWORD" value="0x00000001" />
+      <registryValue name="Clock Rate" valueType="REG_DWORD" value="0x00002710" />
+      <registryValue name="GPU Priority" valueType="REG_DWORD" value="0x00000008" />
+      <registryValue name="Affinity" valueType="REG_DWORD" value="0x00000000" />
+    </registryKey>
+    <registryKey keyName="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\DisplayPostProcessing">
+      <registryValue name="Scheduling Category" valueType="REG_SZ" value="High" />
+      <registryValue name="SFIO Priority" valueType="REG_SZ" value="Normal" />
+      <registryValue name="Background Only" valueType="REG_SZ" value="True" />
+      <registryValue name="BackgroundPriority" valueType="REG_DWORD" value="0x00000008" />
+      <registryValue name="Priority" valueType="REG_DWORD" value="0x00000008" />
+      <registryValue name="Clock Rate" valueType="REG_DWORD" value="0x00002710" />
+      <registryValue name="GPU Priority" valueType="REG_DWORD" value="0x00000008" />
+      <registryValue name="Affinity" valueType="REG_DWORD" value="0x00000000" />
+    </registryKey>
+    <registryKey keyName="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MMCSS">
+      <overridable name="Start" scope="Microsoft" type="REG_DWORD" />
+    </registryKey>
+    <registryKey keyName="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile">
+      <overridable name="SystemResponsiveness" scope="Microsoft" type="REG_DWORD" />
+    </registryKey>
+  </registryKeys>
+  <configuration xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <configurationSchema>
+      <xsd:schema xmlns="Microsoft-Windows-MMCSS" targetNamespace="Microsoft-Windows-MMCSS">
+        <xsd:element default="20" name="SystemResponsiveness" type="xsd:unsignedInt" wcm:handler="regkey('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile')" wcm:legacyName="SystemResponsiveness" wcm:legacyType="REG_DWORD" wcm:scope="allUsers" />
+        <xsd:element default="10" name="NetworkThrottlingIndex" type="xsd:unsignedInt" wcm:handler="regkey('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile')" wcm:legacyName="NetworkThrottlingIndex" wcm:legacyType="REG_DWORD" wcm:scope="allUsers" />
+        <xsd:element default="3" name="Start" type="xsd:unsignedInt" wcm:handler="regkey('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MMCSS')" wcm:legacyName="Start" wcm:legacyType="REG_DWORD" wcm:scope="allUsers" />
+      </xsd:schema>
+    </configurationSchema>
+    <metadata />
+  </configuration>
+  <instrumentation>
+    <events xmlns="http://schemas.microsoft.com/win/2004/08/events" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <provider guid="{36008301-e154-466c-acec-5f4cbd6b4694}" message="$(string.ProviderName)" messageFileName="%systemroot%\system32\avrt.dll" name="Microsoft-Windows-MMCSS" resourceFileName="%systemroot%\system32\avrt.dll" symbol="MMCSS_ETW_PROVIDER">
+        <channels />
+      </provider>
+      <cmi />
+    </events>
+  </instrumentation>
+  <localization>
+    <resources culture="en-US">
+      <stringTable>
+        <string id="description" value="Enables relative prioritization of work based on system-wide task priorities. This is intended mainly for mult
